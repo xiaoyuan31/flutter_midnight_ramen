@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_midnight_ramen/models/menu_item.dart';
 
 class OrderPage extends StatefulWidget {
-  const OrderPage({super.key});
+  final List<MenuItem> prefilledItems;
+  final double totalPrice;
+  const OrderPage({
+    super.key,
+    this.prefilledItems = const [],
+    this.totalPrice = 0,
+  });
 
   @override
   State<StatefulWidget> createState() => _OrderPageState();
@@ -31,11 +38,20 @@ class _OrderPageState extends State<OrderPage> {
       String note = noteController.text;
       int quantity = selectedQuantity;
 
+      String items = widget.prefilledItems.map((e) => e.name).join(', ');
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Order Submitted!\nName: $name\nPhone: $phone\nQuantity: $quantity\nNote: $note',
+            'Order Submitted!\n'
+            'Items: $items\n'
+            'Name: $name\n'
+            'Phone: $phone\n'
+            'Quantity: $quantity\n'
+            'Note: $note\n'
+            'Total: \$${(widget.totalPrice * quantity).toStringAsFixed(2)}',
           ),
+          duration: const Duration(seconds: 4),
         ),
       );
     }
@@ -117,6 +133,10 @@ class _OrderPageState extends State<OrderPage> {
               ),
               const SizedBox(height: 24),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.deepOrange,
+                  foregroundColor: Colors.white,
+                ),
                 onPressed: submitOrder,
                 child: const Text("Submit Order"),
               ),

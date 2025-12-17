@@ -39,6 +39,10 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 20),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.deepOrange,
+              foregroundColor: Colors.white,
+            ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -49,6 +53,10 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 12),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.deepOrange,
+              foregroundColor: Colors.white,
+            ),
             onPressed: () {
               Navigator.push(
                 context,
